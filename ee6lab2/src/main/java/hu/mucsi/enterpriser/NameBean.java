@@ -1,4 +1,4 @@
-package hu.mucsi.hol;
+package hu.mucsi.enterpriser;
 
 import java.io.Serializable;
 

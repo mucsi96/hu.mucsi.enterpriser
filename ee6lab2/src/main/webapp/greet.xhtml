@@ -6,9 +6,8 @@
 </head>
 <body>
 	<h:form>
-	<h:outputText value="Hello #{nameBean.name}!"></h:outputText>
+	<h:outputText id="greeting" value="Hello #{nameBean.name}!"></h:outputText>
 	<h:commandButton value="back" action="index?faces-redirect=true"></h:commandButton>
-	<h:button outcome=""></h:button>
 	</h:form>
 </body>
 </html>
