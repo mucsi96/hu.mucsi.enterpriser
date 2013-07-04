@@ -1,3 +1,4 @@
+--Sample database for PostgreSQL
 DROP SCHEMA ee6lab3 cascade;
 CREATE SCHEMA ee6lab3;
 
