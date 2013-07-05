@@ -6,7 +6,7 @@
 	<groupId>hu.mucsi.enterpriser</groupId>
 	<artifactId>ee6lab3</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	
+
 
 	<repositories>
 		<repository>
@@ -83,35 +83,13 @@
 			<artifactId>arquillian-junit-container</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
-            <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-            <artifactId>shrinkwrap-descriptors-impl</artifactId>
-            <version>1.1.0-beta-1</version>
-            <scope>test</scope>
-        </dependency>
-
-
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.jboss.arquillian.container</groupId> -->
-<!-- 			<artifactId>arquillian-container-spi</artifactId> -->
-<!-- 			<scope>test</scope> -->
-<!-- 		</dependency> -->
-
-		<!-- <dependency> -->
-		<!-- <groupId>org.jboss.integration</groupId> -->
-		<!-- <artifactId>jboss-profileservice-spi</artifactId> -->
-		<!-- <version>6.0.0.Alpha9</version> -->
-		<!-- <scope>test</scope> -->
-		<!-- </dependency> -->
-
-		<!-- <dependency> -->
-		<!-- <groupId>jboss</groupId> -->
-		<!-- <artifactId>jbossall-client</artifactId> -->
-		<!-- <version>3.2.3</version> -->
-		<!-- <scope>test</scope> -->
-		<!-- </dependency> -->
-
+			<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+			<artifactId>shrinkwrap-descriptors-impl</artifactId>
+			<version>1.1.0-beta-1</version>
+			<scope>test</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>org.jboss.as</groupId>
@@ -125,39 +103,9 @@
 			<artifactId>arquillian-protocol-servlet</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
 	<build>
 		<finalName>ee6lab1</finalName>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>org.apache.maven.plugins</groupId>
-										<artifactId>maven-resources-plugin</artifactId>
-										<versionRange>[2.0,)</versionRange>
-										<goals>
-											<goal>resources</goal>
-											<goal>testResources</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore />
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -171,6 +119,39 @@
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.12</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>sql-maven-plugin</artifactId>
+				<version>1.5</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.postgresql</groupId>
+						<artifactId>postgresql</artifactId>
+						<version>9.2-1003-jdbc4</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<driver>org.postgresql.Driver</driver>
+					<url>jdbc:postgressql://localhost:5432:postgres</url>
+					<username>postgres</username>
+					<password>postgres</password>
+				</configuration>
+				<executions>
+					<execution>
+						<id>create-schema</id>
+						<phase>process-test-resources</phase>
+						<goals>
+							<goal>execute</goal>
+						</goals>
+						<configuration>
+							<autocommit>true</autocommit>
+							<srcFiles>
+								<srcFile>src/main/sql/your-schema.sql</srcFile>
+							</srcFiles>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
