@@ -1,6 +1,5 @@
-package hu.mucsi.enterpriser;
+package hu.mucsi.enterpriser.test;
 
-import java.io.File;
 import java.io.IOException;
 
 import junit.framework.Assert;
@@ -11,7 +10,6 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.jsfunit.api.InitialPage;
 import org.jboss.jsfunit.jsfsession.JSFClientSession;
 import org.jboss.jsfunit.jsfsession.JSFServerSession;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,17 +21,7 @@ public class JSFTest {
 	@Deployment
 	@OverProtocol("Servlet 3.0")
 	public static WebArchive createDeployment() {
-		WebArchive war = ShrinkWrap
-				.create(WebArchive.class, "test.war")
-				.setWebXML(new File("src/main/webapp/WEB-INF/web.xml"))
-				.addPackage(Package.getPackage("hu.mucsi.enterpriser"))
-				// my test package
-				.addAsWebResource(new File("src/main/webapp", "index.xhtml"))
-				.addAsWebResource(new File("src/main/webapp", "greet.xhtml"))
-				.addAsWebInfResource(
-						new File("src/main/webapp/WEB-INF", "beans.xml"));
-		System.out.println(war.toString(true));
-		return war;
+		return DeploymentCreator.createDeployment();
 	}
 
 	@Test

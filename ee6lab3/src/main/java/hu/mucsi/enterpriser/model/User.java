@@ -1,10 +1,21 @@
 package hu.mucsi.enterpriser.model;
 
 import java.io.Serializable;
-
-import javax.persistence.*;
-
+import java.util.LinkedList;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 
 /**
@@ -13,7 +24,9 @@ import java.util.List;
  */
 @Entity
 @Table(name="ee6lab3_users")
-@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+@NamedQueries({
+	@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+})
 public class User implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -79,20 +92,27 @@ public class User implements Serializable {
 		return this.resources;
 	}
 
-	public void setEmail(String email) {
+	public User setEmail(String email) {
 		this.email = email;
+		return this;
 	}
 
-	public void setFirstname(String firstname) {
+	public User setFirstname(String firstname) {
 		this.firstname = firstname;
+		return this;
 	}
 
-	public void setLastname(String lastname) {
+	public User setLastname(String lastname) {
 		this.lastname = lastname;
+		return this;
 	}
 
-	public void setResources(List<Resource> resources) {
-		this.resources = resources;
+	public User addResources(Resource resource) {
+		if (resources == null) {
+			resources = new LinkedList<Resource>();
+		}
+		resources.add(resource);
+		return this;
 	}
 
 }
