@@ -23,6 +23,11 @@
 				<updatePolicy>never</updatePolicy>
 			</snapshots>
 		</repository>
+		<repository>
+			<id>prime-repo</id>
+			<name>Prime Repo</name>
+			<url>http://repository.primefaces.org</url>
+		</repository>
 	</repositories>
 
 
@@ -57,51 +62,49 @@
 			<type>pom</type>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.jboss.jsfunit</groupId>
 			<artifactId>jsfunit-arquillian</artifactId>
 			<version>2.0.0.Beta2</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.jboss.jsfunit</groupId>
 			<artifactId>jboss-jsfunit-core</artifactId>
 			<version>2.0.0.Beta2</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.jboss.arquillian.junit</groupId>
 			<artifactId>arquillian-junit-container</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.jboss.shrinkwrap.descriptors</groupId>
 			<artifactId>shrinkwrap-descriptors-impl</artifactId>
 			<version>1.1.0-beta-1</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.jboss.as</groupId>
 			<artifactId>jboss-as-arquillian-container-remote</artifactId>
 			<version>7.1.1.Final</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.jboss.arquillian.protocol</groupId>
 			<artifactId>arquillian-protocol-servlet</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>3.5</version>
 		</dependency>
 	</dependencies>
 	<build>
