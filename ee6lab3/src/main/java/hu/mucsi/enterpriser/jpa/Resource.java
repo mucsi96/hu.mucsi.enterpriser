@@ -1,4 +1,4 @@
-package hu.mucsi.enterpriser.model;
+package hu.mucsi.enterpriser.jpa;
 
 import java.io.Serializable;
 

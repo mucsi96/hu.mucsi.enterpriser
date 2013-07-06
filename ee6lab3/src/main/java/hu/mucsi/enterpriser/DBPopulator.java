@@ -1,7 +1,7 @@
 package hu.mucsi.enterpriser;
 
-import hu.mucsi.enterpriser.model.Resource;
-import hu.mucsi.enterpriser.model.User;
+import hu.mucsi.enterpriser.jpa.Resource;
+import hu.mucsi.enterpriser.jpa.User;
 
 import java.util.ArrayList;
 import java.util.List;

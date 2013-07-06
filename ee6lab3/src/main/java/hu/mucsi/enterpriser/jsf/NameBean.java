@@ -1,4 +1,4 @@
-package hu.mucsi.enterpriser;
+package hu.mucsi.enterpriser.jsf;
 
 import java.io.Serializable;
 

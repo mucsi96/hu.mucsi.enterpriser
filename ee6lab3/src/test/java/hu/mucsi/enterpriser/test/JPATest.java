@@ -3,7 +3,7 @@ package hu.mucsi.enterpriser.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import hu.mucsi.enterpriser.DBPopulator;
-import hu.mucsi.enterpriser.model.User;
+import hu.mucsi.enterpriser.jpa.User;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;

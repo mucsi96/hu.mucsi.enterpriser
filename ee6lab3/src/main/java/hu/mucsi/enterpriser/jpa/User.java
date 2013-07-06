@@ -1,4 +1,4 @@
-package hu.mucsi.enterpriser.model;
+package hu.mucsi.enterpriser.jpa;
 
 import java.io.Serializable;
 import java.util.LinkedList;
@@ -25,10 +25,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name="ee6lab3_users")
 @NamedQueries({
-	@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+	@NamedQuery(name="User.findAll", query="SELECT u FROM User u"),
+	@NamedQuery(name="User.findByName", query="SELECT u FROM User u WHERE lower(u.firstname) like :name or lower(u.lastname) like :name")
 })
 public class User implements Serializable {
 	
+	@Override
+	public String toString() {
+		return firstname + " " + lastname ;
+	}
+
 	private static final long serialVersionUID = 1L;
 	
 	@Id
