@@ -5,13 +5,25 @@
 	<meta charset="UTF-8" />
 	<title>EE6Lab3 - Resource Managment Application</title>
 	<style>
-.header {
-	font-size: xx-large;
+.header .ui-widget-content{
 	text-align: center;
+	font-size: xx-large;
+	width: 100%;
+	background: none;
+	overflow: hidden !important;
 }
 
-.footer {
+.footer .ui-widget-content {
 	text-align: center;
+	background: none;
+}
+
+.ui-widget-content .ui-datalist-content {
+	border: none;
+}
+
+.ui-inputfield {
+	width:100%;
 }
 </style>
 </h:head>
@@ -19,33 +31,28 @@
 	<h:form>
 		<p:layout fullPage="true">
 
-			<p:layoutUnit position="north" styleClass="header">
-				<h:outputText value="Resource Managment Application" />
+			<p:layoutUnit position="north" styleClass="ui-widget-header ui-corner-all header">
+				Resource Managment System
 			</p:layoutUnit>
 
-			<p:layoutUnit position="south" size="40" styleClass="footer">
+			<p:layoutUnit position="south" size="40" styleClass="ui-widget-header ui-corner-all footer">
 				<h:outputText value="All Rights reserved" />
 			</p:layoutUnit>
 
-			<p:layoutUnit position="west" size="400" resizable="true">
+			<p:layoutUnit position="west" size="225" resizable="true">
 
-				<p:inputText id="user_filter" value="#{usersFilterBean.value}">
-					<p:ajax event="keyup" update="user_list"
-						listener="#{userBean.matchUser}">
+				<p:inputText id="user_filter" value="#{userFilterBean.value}">
+					<p:ajax event="keyup" update="user_list">
 					</p:ajax>
 				</p:inputText>
-				<p:dataList id="user_list" value="#{userBean.users}" var="u">
-					<h:outputText value="#{u.firstname}" />
-					<h:outputText value="#{u.lastname}" />
+				<p:dataList id="user_list" value="#{userListBean.value}" var="u">
+					<h:outputText value="#{u.firstname} #{u.lastname}" />
 				</p:dataList>
 
 			</p:layoutUnit>
 
 			<p:layoutUnit position="center">
-				<h:form>
-            This fullPage layout consists of five different layoutUnits which are resizable and closable by default.
-
-        </h:form>
+				
 			</p:layoutUnit>
 
 		</p:layout>
