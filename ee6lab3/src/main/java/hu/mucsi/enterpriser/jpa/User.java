@@ -23,7 +23,7 @@ import javax.persistence.Table;
  * 
  */
 @Entity
-@Table(name="ee6lab3_users")
+@Table(name="users",schema="ee6lab3")
 @NamedQueries({
 	@NamedQuery(name="User.findAll", query="SELECT u FROM User u"),
 	@NamedQuery(name="User.findByName", query="SELECT u FROM User u WHERE lower(u.firstname) like :name or lower(u.lastname) like :name")
@@ -39,8 +39,8 @@ public class User implements Serializable {
 	
 	@Id
     @SequenceGenerator(name="users_id_seq",
-                       sequenceName="ee6lab3_users_id_seq",
-                       allocationSize=1)
+                       sequenceName="users_id_seq",
+                       allocationSize=1,schema="ee6lab3")
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
                     generator="users_id_seq")
     @Column(name = "id", updatable=false)
@@ -58,7 +58,7 @@ public class User implements Serializable {
 	//bi-directional many-to-many association to Resource
 	@ManyToMany
 	@JoinTable(
-		name="ee6lab3_user_resource"
+		name="user_resource",schema="ee6lab3"
 		, joinColumns={
 			@JoinColumn(name="user_id", referencedColumnName="id")
 			}

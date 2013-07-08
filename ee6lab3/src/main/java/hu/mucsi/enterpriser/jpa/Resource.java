@@ -12,15 +12,15 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="ee6lab3_resources")
+@Table(name="resources",schema="ee6lab3")
 @NamedQuery(name="Resource.findAll", query="SELECT r FROM Resource r")
 public class Resource implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
     @SequenceGenerator(name="resources_id_seq",
-                       sequenceName="ee6lab3_resources_id_seq",
-                       allocationSize=1)
+                       sequenceName="resources_id_seq",
+                       allocationSize=1,schema="ee6lab3")
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
                     generator="resources_id_seq")
     @Column(name = "id", updatable=false)
