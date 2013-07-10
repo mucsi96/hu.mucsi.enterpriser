@@ -26,7 +26,8 @@ import javax.persistence.Table;
 @Table(name="users",schema="ee6lab3")
 @NamedQueries({
 	@NamedQuery(name="User.findAll", query="SELECT u FROM User u"),
-	@NamedQuery(name="User.findByName", query="SELECT u FROM User u WHERE lower(u.firstname) like :name or lower(u.lastname) like :name")
+	@NamedQuery(name="User.findByName", query="SELECT u FROM User u WHERE lower(u.firstname) like :name or lower(u.lastname) like :name"),
+	@NamedQuery(name="User.findById", query="SELECT u FROM User u WHERE u.id = :id")
 })
 public class User implements Serializable {
 	

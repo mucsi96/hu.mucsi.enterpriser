@@ -1,11 +1,16 @@
-<html xmlns="http://www.w3c.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+<html xmlns="http://www.w3c.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 	<meta charset="UTF-8" />
 	<title>EE6Lab3 - Resource Managment Application</title>
 	<style>
-.header .ui-widget-content{
+.header .ui-widget-content {
+	text-align: center;
+	width: 100%;
+	background: none;
+	overflow: hidden !important;
+}
+
+.main-header .ui-widget-content {
 	text-align: center;
 	font-size: xx-large;
 	width: 100%;
@@ -13,17 +18,22 @@
 	overflow: hidden !important;
 }
 
-.footer .ui-widget-content {
+.main-footer .ui-widget-content {
 	text-align: center;
 	background: none;
 }
 
 .ui-widget-content .ui-datalist-content {
 	border: none;
+	overflow-x: hidden;
 }
 
 .ui-inputfield {
-	width:100%;
+	width: 100%;
+}
+
+.list-button {
+	width: 100%;
 }
 </style>
 </h:head>
@@ -31,28 +41,31 @@
 	<h:form>
 		<p:layout fullPage="true">
 
-			<p:layoutUnit position="north" styleClass="ui-widget-header ui-corner-all header">
+			<p:layoutUnit position="north" styleClass="ui-widget-header ui-corner-all main-header">
 				Resource Managment System
 			</p:layoutUnit>
 
-			<p:layoutUnit position="south" size="40" styleClass="ui-widget-header ui-corner-all footer">
+			<p:layoutUnit position="south" size="40" styleClass="ui-widget-header ui-corner-all main-footer">
 				<h:outputText value="All Rights reserved" />
 			</p:layoutUnit>
 
 			<p:layoutUnit position="west" size="225" resizable="true">
 
-				<p:inputText id="user_filter" value="#{userFilterBean.value}">
-					<p:ajax event="keyup" update="user_list">
-					</p:ajax>
-				</p:inputText>
-				<p:dataList id="user_list" value="#{userListBean.value}" var="u">
-					<h:outputText value="#{u.firstname} #{u.lastname}" />
-				</p:dataList>
+				<p:dataTable var="user" value="#{userListBean.lazyModel}" paginator="true" paginatorPosition="bottom" rows="10" selectionMode="single" 
+				selection="#{userListBean.selectedUser}" id="userTable" lazy="true">
+
+<!-- 					<p:ajax event="rowSelect" listener="#{tableBean.onRowSelect}" update=":form:display" oncomplete="carDialog.show()" /> -->
+
+					<p:column headerText="Users" sortBy="name" filterBy="name" id="name">
+						<h:outputText value="#{user.firstname} #{user.lastname}" />
+					</p:column>
+
+				</p:dataTable>
 
 			</p:layoutUnit>
 
-			<p:layoutUnit position="center">
-				
+			<p:layoutUnit position="center" header="Resources">
+
 			</p:layoutUnit>
 
 		</p:layout>
